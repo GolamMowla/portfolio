@@ -1,0 +1,2116 @@
+<!--
+  MOWLA DIGITAL PORTFOLIO — BLOGGER SINGLE-FILE VERSION
+  Paste this entire file into a Blogger HTML/static Page,
+  or into your theme where you want the page to render.
+  CSS and JS are inlined here purely for one-paste convenience —
+  it is the exact same design and code as index.html + style.css
+  + script.js kept separately for local development.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Md. Golam Mowla | Digital Marketing & E-commerce Specialist</title>
+  <meta name="description" content="Md. Golam Mowla — Digital Marketing & E-commerce Specialist. Meta Ads, Google Ads, GA4, GTM, WordPress and Conversion Tracking, under the Mowla Digital brand.">
+  <link rel="icon" type="image/png" href="favicon.png" sizes="64x64">
+
+  <!-- Google Font: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet: same design, unchanged -->
+  <style>
+/* =============================================================
+   MOWLA DIGITAL — PORTFOLIO STYLESHEET (BLOGGER VERSION)
+   Design is unchanged from the original build — same tokens,
+   spacing, colors, radii, shadows, animations and layout.
+   Only the responsive breakpoints were expanded/fixed, and a
+   loading spinner + success popup were added for the form.
+   ============================================================= */
+
+  /* =============================================================
+     MOWLA DIGITAL — PORTFOLIO STYLESHEET
+     Design tokens first, then structural sections, top to bottom.
+     ============================================================= */
+
+  /* ---------- 1. Design Tokens ---------- */
+  :root {
+    --primary: #2563EB;
+    --primary-dark: #1D4ED8;
+    --dark: #111827;
+    --text: #374151;
+    --bg: #FFFFFF;
+    --light-bg: #F8FAFC;
+    --border: #E5E7EB;
+    --success: #22C55E;
+
+    --container: 1200px;
+    --radius-sm: 10px;
+    --radius-md: 18px;
+    --radius-lg: 25px;
+
+    --shadow-sm: 0 2px 10px rgba(17, 24, 39, 0.06);
+    --shadow-md: 0 10px 30px rgba(17, 24, 39, 0.08);
+    --shadow-lg: 0 25px 60px rgba(37, 99, 235, 0.18);
+
+    --transition: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    --section-pad: 100px;
+  }
+
+  /* ---------- 2. Reset ---------- */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  img { display: block; max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+  h1, h2, h3, h4 {
+    color: var(--dark);
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 3px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .section { padding: var(--section-pad) 0; }
+  .section-light { background: var(--light-bg); }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 14px;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 22px;
+    height: 2px;
+    background: var(--primary);
+    display: inline-block;
+  }
+
+  .section-heading {
+    font-size: 40px;
+    max-width: 560px;
+    margin-bottom: 18px;
+  }
+
+  .section-sub {
+    max-width: 560px;
+    color: var(--text);
+    font-size: 16px;
+    margin-bottom: 50px;
+  }
+
+  .section-head-center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .section-head-center .section-heading,
+  .section-head-center .section-sub { margin-left: auto; margin-right: auto; }
+
+  /* ---------- 3. Buttons ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 30px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: var(--transition);
+    white-space: nowrap;
+  }
+
+  .btn-primary {
+    background: var(--primary);
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.28);
+  }
+  .btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 14px 26px rgba(37, 99, 235, 0.32);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--dark);
+    border: 1.5px solid var(--border);
+  }
+  .btn-outline:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-3px);
+  }
+
+  .btn-light {
+    background: #fff;
+    color: var(--primary);
+  }
+  .btn-light:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+  .btn-ghost-light {
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid rgba(255,255,255,0.4);
+  }
+  .btn-ghost-light:hover { border-color: #fff; transform: translateY(-3px); }
+
+  /* ---------- 4. Navbar ---------- */
+  .navbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+    transition: box-shadow var(--transition);
+  }
+  .navbar.is-scrolled { box-shadow: var(--shadow-sm); }
+
+  .navbar .container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--dark);
+  }
+  .logo-mark {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--primary), #60A5FA);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .logo-tagline {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+  .nav-links { display: flex; gap: 34px; }
+  .nav-links a {
+    position: relative;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    transition: color var(--transition);
+    padding: 6px 0;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0%; height: 2px;
+    background: var(--primary);
+    transition: width var(--transition);
+  }
+  .nav-links a:hover,
+  .nav-links a.active { color: var(--dark); }
+  .nav-links a:hover::after,
+  .nav-links a.active::after { width: 100%; }
+
+  .nav-actions { display: flex; align-items: center; gap: 16px; }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    width: 26px;
+  }
+  .nav-toggle span {
+    height: 2px;
+    background: var(--dark);
+    border-radius: 2px;
+    transition: var(--transition);
+  }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ---------- 5. Hero ---------- */
+  .hero {
+    position: relative;
+    min-height: 850px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  .hero .container {
+    display: grid;
+    grid-template-columns: 55% 45%;
+    align-items: center;
+    gap: 40px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-left .eyebrow { color: var(--primary); }
+
+  .hero-title {
+    font-size: 72px;
+    letter-spacing: -0.02em;
+    margin-bottom: 18px;
+  }
+  .hero-title .accent { color: var(--primary); }
+
+  .hero-subheading {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 20px;
+  }
+
+  .hero-desc {
+    font-size: 17px;
+    max-width: 520px;
+    margin-bottom: 38px;
+  }
+
+  .hero-buttons { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 46px; }
+
+  .hero-quickstats { display: flex; gap: 40px; }
+  .hero-quickstats .stat-num {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--dark);
+  }
+  .hero-quickstats .stat-num span { color: var(--primary); }
+  .hero-quickstats .stat-label {
+    font-size: 13px;
+    color: var(--text);
+  }
+
+  .hero-right { position: relative; display: flex; justify-content: center; }
+
+  .hero-blob {
+    position: absolute;
+    width: 620px;
+    height: 620px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, var(--primary), #60A5FA 60%, #93C5FD);
+    border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%;
+    z-index: 0;
+    opacity: 0.9;
+    animation: blob-morph 12s ease-in-out infinite;
+  }
+
+  @keyframes blob-morph {
+    0%, 100% { border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%; }
+    50% { border-radius: 60% 40% 35% 65% / 55% 60% 40% 45%; }
+  }
+
+  .hero-image-wrap {
+    position: relative;
+    z-index: 1;
+    width: 650px;
+    max-width: 100%;
+    height: 750px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  .hero-image-wrap img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+
+  .hero-floating-card {
+    position: absolute;
+    background: #fff;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 2;
+    animation: float-card 5s ease-in-out infinite;
+  }
+  .hero-floating-card.card-top { top: 40px; left: -30px; }
+  .hero-floating-card.card-bottom { bottom: 50px; right: -20px; animation-delay: 1.5s; }
+
+  .hero-floating-card .icon-badge {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: var(--light-bg);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--primary);
+  }
+  .hero-floating-card strong { display: block; font-size: 14px; color: var(--dark); }
+  .hero-floating-card span { font-size: 12px; color: var(--text); }
+
+  @keyframes float-card {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text);
+    z-index: 2;
+  }
+  .scroll-cue .line {
+    width: 1px; height: 34px;
+    background: var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-cue .line::after {
+    content: '';
+    position: absolute;
+    top: -100%; left: 0; width: 100%; height: 100%;
+    background: var(--primary);
+    animation: scroll-line 1.8s ease-in-out infinite;
+  }
+  @keyframes scroll-line {
+    0% { top: -100%; }
+    50% { top: 0%; }
+    100% { top: 100%; }
+  }
+
+  /* ---------- 6. Trust Bar ---------- */
+  .trust-bar { padding: 60px 0; }
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+  }
+  .trust-card {
+    height: 120px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-align: center;
+    padding: 10px;
+    transition: var(--transition);
+  }
+  .trust-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+    border-color: transparent;
+  }
+  .trust-card .trust-num {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .trust-card .trust-label {
+    font-size: 13px;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* ---------- 7. About ---------- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 550px 1fr;
+    gap: 70px;
+    align-items: center;
+  }
+
+  .about-image-wrap {
+    position: relative;
+    width: 550px;
+    height: 650px;
+    max-width: 100%;
+  }
+  .about-image-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+  }
+  .about-exp-badge {
+    position: absolute;
+    bottom: -26px;
+    left: -26px;
+    background: var(--dark);
+    color: #fff;
+    padding: 22px 26px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+  }
+  .about-exp-badge .num { font-size: 32px; font-weight: 700; color: #fff; }
+  .about-exp-badge .num span { color: var(--primary); }
+  .about-exp-badge .lbl { font-size: 12px; color: #D1D5DB; }
+
+  .about-desc { margin-bottom: 30px; }
+  .about-desc p { margin-bottom: 16px; }
+
+  .skill-bar { margin-bottom: 22px; }
+  .skill-bar:last-child { margin-bottom: 0; }
+  .skill-bar-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--dark);
+  }
+  .skill-bar-top .pct { color: var(--primary); }
+  .skill-track {
+    height: 8px;
+    background: var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .skill-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--primary), #60A5FA);
+    border-radius: 8px;
+    transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* ---------- 8. Services ---------- */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .service-card {
+    width: 100%;
+    min-height: 260px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: 36px 30px;
+    transition: var(--transition);
+  }
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+    border-color: transparent;
+  }
+  .service-icon {
+    width: 70px; height: 70px;
+    border-radius: 16px;
+    background: var(--light-bg);
+    color: var(--primary);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 22px;
+    transition: var(--transition);
+  }
+  .service-card:hover .service-icon {
+    background: var(--primary);
+    color: #fff;
+  }
+  .service-card h3 { font-size: 19px; margin-bottom: 12px; }
+  .service-card p { font-size: 14.5px; color: var(--text); margin-bottom: 18px; }
+  .service-link {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .service-link svg { transition: var(--transition); }
+  .service-card:hover .service-link svg { transform: translateX(4px); }
+
+  /* ---------- 9. Portfolio ---------- */
+  .portfolio-filters {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 44px;
+  }
+  .filter-btn {
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    transition: var(--transition);
+  }
+  .filter-btn.active,
+  .filter-btn:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .portfolio-card {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    background: #fff;
+  }
+  .portfolio-thumb {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+  }
+  .portfolio-thumb img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .portfolio-card:hover .portfolio-thumb img { transform: scale(1.08); }
+
+  .portfolio-info { padding: 22px 24px; }
+  .portfolio-category {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .portfolio-info h3 { font-size: 18px; margin-bottom: 14px; }
+  .view-project-btn {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--dark);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .view-project-btn svg { color: var(--primary); transition: var(--transition); }
+  .portfolio-card:hover .view-project-btn svg { transform: translateX(4px); }
+
+  /* ---------- 10. Experience Timeline ---------- */
+  .timeline {
+    position: relative;
+    max-width: 760px;
+    margin: 0 auto;
+    padding-left: 40px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px; top: 6px; bottom: 6px;
+    width: 2px;
+    background: var(--border);
+  }
+  .timeline-item {
+    position: relative;
+    padding-bottom: 48px;
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-dot {
+    position: absolute;
+    left: -40px; top: 4px;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--primary);
+  }
+  .timeline-date {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+  .timeline-item h3 { font-size: 19px; margin-bottom: 4px; }
+  .timeline-role { font-size: 14px; color: var(--text); font-weight: 500; margin-bottom: 10px; }
+  .timeline-item p { font-size: 14.5px; }
+
+  /* ---------- 11. Certifications ---------- */
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+    align-items: center;
+  }
+  .cert-logo {
+    height: 90px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 16px;
+    transition: var(--transition);
+    filter: grayscale(100%);
+    opacity: 0.7;
+  }
+  .cert-logo:hover { filter: grayscale(0%); opacity: 1; transform: translateY(-4px); box-shadow: var(--shadow-sm); }
+  .cert-logo img { max-height: 40px; width: auto; }
+
+  /* ---------- 12. Tools ---------- */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+  }
+  .tool-card {
+    width: 100%;
+    min-height: 150px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-align: center;
+    padding: 16px;
+    transition: var(--transition);
+  }
+  .tool-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: transparent; }
+  .tool-icon {
+    width: 80px; height: 80px;
+    border-radius: 14px;
+    background: var(--light-bg);
+    color: var(--primary);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tool-card span { font-size: 13.5px; font-weight: 500; color: var(--dark); }
+
+  /* ---------- 13. CTA ---------- */
+  .cta-section {
+    background: var(--dark);
+    background-image: radial-gradient(circle at 15% 20%, rgba(37,99,235,0.35), transparent 45%),
+                       radial-gradient(circle at 85% 80%, rgba(37,99,235,0.25), transparent 45%);
+    padding: 90px 0;
+  }
+  .cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  .cta-inner h2 {
+    color: #fff;
+    font-size: 36px;
+    max-width: 560px;
+  }
+  .cta-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  /* ---------- 14. Contact ---------- */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 60px;
+  }
+  .contact-info-item {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 28px;
+  }
+  .contact-info-item .icon-badge {
+    width: 52px; height: 52px;
+    min-width: 52px;
+    border-radius: 14px;
+    background: var(--light-bg);
+    color: var(--primary);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .contact-info-item h4 { font-size: 15px; margin-bottom: 4px; }
+  .contact-info-item p, .contact-info-item a { font-size: 14.5px; color: var(--text); }
+  .contact-info-item a:hover { color: var(--primary); }
+
+  .contact-socials { display: flex; gap: 12px; margin-top: 12px; }
+  .contact-socials a {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    background: var(--light-bg);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--dark);
+    transition: var(--transition);
+  }
+  .contact-socials a:hover { background: var(--primary); color: #fff; }
+
+  .contact-form {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 42px;
+    box-shadow: var(--shadow-sm);
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .form-group { margin-bottom: 20px; }
+  .form-group label {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 14.5px;
+    color: var(--dark);
+    background: var(--light-bg);
+    transition: var(--transition);
+  }
+  .form-group textarea { resize: vertical; min-height: 130px; }
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(37,99,235,0.1);
+  }
+  .form-status {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    display: none;
+  }
+  .form-status.show { display: block; }
+  .form-status.success { color: var(--success); }
+  .form-status.error { color: #DC2626; }
+
+  /* ---------- 15. Footer ---------- */
+  .footer {
+    background: #fff;
+    border-top: 1px solid var(--border);
+    padding: 40px 0;
+  }
+  .footer .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .footer-copy { font-size: 14px; color: var(--text); }
+  .footer-socials { display: flex; gap: 12px; }
+  .footer-socials a {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    background: var(--light-bg);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--dark);
+    transition: var(--transition);
+  }
+  .footer-socials a:hover { background: var(--primary); color: #fff; }
+
+  /* ---------- 16. Reveal Animation Utility ---------- */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+  }
+  [data-reveal="left"] { transform: translateX(-40px); }
+  [data-reveal="right"] { transform: translateX(40px); }
+  [data-reveal].is-visible { opacity: 1; transform: translate(0, 0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] { transition: none; opacity: 1; transform: none; }
+    .hero-blob, .hero-floating-card, .scroll-cue .line::after { animation: none; }
+  }
+
+  /* ---------- 17. Submit Button Loading Spinner ---------- */
+  .btn-loading { position: relative; color: transparent !important; pointer-events: none; }
+  .btn-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 20px; height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2.5px solid rgba(255,255,255,0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: btn-spin 0.7s linear infinite;
+  }
+  @keyframes btn-spin { to { transform: rotate(360deg); } }
+
+  /* ---------- 18. Success Popup (Fade + Scale) ---------- */
+  .popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(17, 24, 39, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease;
+  }
+  .popup-overlay.show { opacity: 1; visibility: visible; }
+
+  .popup-box {
+    background: #fff;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    padding: 44px 40px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    transform: scale(0.85);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), opacity 0.35s ease;
+  }
+  .popup-overlay.show .popup-box { transform: scale(1); opacity: 1; }
+
+  .popup-icon {
+    width: 68px; height: 68px;
+    border-radius: 50%;
+    background: rgba(34, 197, 94, 0.12);
+    color: var(--success);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+  }
+  .popup-box h3 { font-size: 22px; margin-bottom: 12px; }
+  .popup-box p { font-size: 14.5px; color: var(--text); margin-bottom: 24px; }
+  .popup-close-btn {
+    padding: 12px 28px;
+    border-radius: 10px;
+    background: var(--primary);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    transition: var(--transition);
+  }
+  .popup-close-btn:hover { background: var(--primary-dark); }
+
+  .field-error {
+    display: block;
+    font-size: 12.5px;
+    color: #DC2626;
+    margin-top: 6px;
+    min-height: 16px;
+  }
+  .form-group input.invalid,
+  .form-group textarea.invalid { border-color: #DC2626; background: #FEF2F2; }
+
+  /* ---------- 19. Responsive ----------
+     Pixel-checked at: 1920 / 1440 / 1024 (tablet landscape) /
+     768 (tablet portrait) / 430 / 390 / 360.
+     No design values change here — only when each rule kicks in,
+     plus the additions needed to stop overflow on real devices. */
+
+  /* Everything above 1200px is already capped by .container's
+     max-width, so 1920 and 1440 render identically to the base
+     desktop design without extra rules. */
+
+  /* ---- Tablet Landscape (≤1024px) ---- */
+  @media (max-width: 1024px) {
+    :root { --section-pad: 80px; }
+    .hero { min-height: auto; padding: 60px 0; }
+    .hero .container { grid-template-columns: 1fr; }
+    .hero-right { margin-top: 60px; justify-content: center; }
+    .hero-title { font-size: 54px; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-image-wrap { width: 100%; max-width: 500px; margin: 0 auto; }
+    .services-grid, .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+    .trust-grid, .cert-grid, .tools-grid { grid-template-columns: repeat(3, 1fr); }
+    .contact-grid { grid-template-columns: 1fr; }
+
+    /* Hamburger menu turns on for tablet landscape and below */
+    .nav-menu { position: fixed; top: 80px; left: 0; width: 100%; height: calc(100vh - 80px);
+      background: #fff; flex-direction: column; justify-content: flex-start; padding: 40px 24px;
+      transform: translateX(100%); transition: transform var(--transition); gap: 30px;
+      overflow-y: auto; }
+    .nav-menu.open { transform: translateX(0); }
+    .nav-links { flex-direction: column; gap: 22px; }
+    .nav-actions { flex-direction: column; align-items: stretch; }
+    .nav-toggle { display: flex; }
+  }
+
+  /* ---- Tablet Portrait (≤768px) ---- */
+  @media (max-width: 768px) {
+    :root { --section-pad: 64px; }
+    .hero-title { font-size: 46px; }
+    .hero-subheading { font-size: 19px; }
+    .hero-image-wrap { height: 560px; }
+    .hero-blob { width: 460px; height: 460px; }
+    .section-heading { font-size: 32px; }
+    .trust-grid { grid-template-columns: repeat(2, 1fr); }
+    .cert-grid, .tools-grid { grid-template-columns: repeat(3, 1fr); }
+    .cta-inner { flex-direction: column; text-align: center; }
+    .form-row { grid-template-columns: 1fr; }
+    .contact-form { padding: 32px 26px; }
+  }
+
+  /* ---- Mobile Large (≤430px) ---- */
+  @media (max-width: 430px) {
+    :root { --section-pad: 52px; }
+    .container { padding: 0 18px; }
+    .hero-title { font-size: 36px; }
+    .hero-subheading { font-size: 17px; }
+    .hero-desc { font-size: 15.5px; }
+    .section-heading { font-size: 26px; }
+    .section-sub { font-size: 14.5px; }
+    .hero-quickstats { gap: 20px; flex-wrap: wrap; }
+    .hero-quickstats .stat-num { font-size: 22px; }
+    .hero-image-wrap { height: 420px; border-radius: 18px; }
+    .hero-blob { width: 300px; height: 300px; }
+    .hero-floating-card { padding: 10px 12px; gap: 8px; }
+    .hero-floating-card.card-top { top: 16px; left: 4px; }
+    .hero-floating-card.card-bottom { bottom: 16px; right: 4px; }
+    .hero-floating-card strong { font-size: 12.5px; }
+    .hero-floating-card span { font-size: 11px; }
+    .services-grid, .portfolio-grid { grid-template-columns: 1fr; }
+    .trust-grid { grid-template-columns: repeat(2, 1fr); }
+    .trust-card { height: 100px; }
+    .cert-grid, .tools-grid { grid-template-columns: repeat(2, 1fr); }
+    .about-exp-badge { left: 0; bottom: -18px; padding: 14px 16px; }
+    .about-exp-badge .num { font-size: 26px; }
+    .cta-inner h2 { font-size: 24px; }
+    .cta-buttons { width: 100%; }
+    .cta-buttons .btn { width: 100%; }
+    .contact-form { padding: 26px 20px; }
+    .timeline { padding-left: 30px; }
+    .timeline-dot { left: -30px; }
+    .popup-box { padding: 32px 24px; }
+  }
+
+  /* ---- Mobile Medium (≤390px) ---- */
+  @media (max-width: 390px) {
+    .hero-title { font-size: 32px; }
+    .hero-image-wrap { height: 380px; }
+    .hero-blob { width: 260px; height: 260px; }
+    .hero-quickstats .stat-num { font-size: 20px; }
+    .btn { padding: 14px 22px; font-size: 14px; }
+    .service-card { padding: 28px 22px; }
+  }
+
+  /* ---- Mobile Small (≤360px) ---- */
+  @media (max-width: 360px) {
+    .hero-title { font-size: 29px; }
+    .hero-image-wrap { height: 340px; }
+    .hero-blob { width: 230px; height: 230px; }
+    .hero-floating-card { display: none; }
+    .logo-tagline { display: none; }
+    .section-heading { font-size: 23px; }
+    .hero-quickstats { gap: 14px; }
+  }
+
+  /* Universal overflow guard — belt and braces on top of the
+     breakpoints above so nothing can force a horizontal scrollbar. */
+  html, body { max-width: 100%; overflow-x: hidden; }
+  img, svg, video { max-width: 100%; height: auto; }
+  .hero-image-wrap img { height: 100%; }
+
+  </style>
+</head>
+<body>
+
+  <!-- =========================================================
+       ICON SPRITE (hidden) — every icon used on the page
+       ========================================================= -->
+  <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+
+    <symbol id="icon-meta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M4 13c0-4 2-8 5-8s4 4 5 8 2 8 5 8 5-4 5-8" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="icon-google" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M21 12.2c0-.7-.06-1.4-.18-2H12v3.8h5.06a4.33 4.33 0 0 1-1.88 2.84v2.35h3.04C20.1 17.5 21 15.1 21 12.2Z"/>
+      <path d="M12 21c2.53 0 4.66-.83 6.22-2.26l-3.04-2.35c-.84.57-1.92.9-3.18.9-2.44 0-4.51-1.63-5.25-3.83H3.6v2.4A9 9 0 0 0 12 21Z"/>
+      <path d="M6.75 13.46A5.4 5.4 0 0 1 6.46 12c0-.5.1-1 .29-1.46V8.14H3.6A9 9 0 0 0 3 12c0 1.45.35 2.83.96 4.03l2.79-2.57Z"/>
+      <path d="M12 6.7c1.38 0 2.62.47 3.6 1.4l2.7-2.7A8.94 8.94 0 0 0 12 3a9 9 0 0 0-8.4 5.14l3.15 2.4C7.49 8.34 9.56 6.7 12 6.7Z"/>
+    </symbol>
+
+    <symbol id="icon-wordpress" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M4 9.5h1.6l3 8.7M8 9.5h7M12 9.5l3.2 9.2M16.5 9.5h2M17.8 6.6a9 9 0 0 1 2 8.6M6 5.6 10.6 18" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="icon-seo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <circle cx="10.5" cy="10.5" r="6.5"/>
+      <path d="m20 20-4.7-4.7" stroke-linecap="round"/>
+      <path d="M8 10.5h5M10.5 8v5" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="icon-ga4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M4 20V10M11 20V4M18 20v-6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M3 20h18" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="icon-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <circle cx="9" cy="20" r="1.4"/>
+      <circle cx="17" cy="20" r="1.4"/>
+      <path d="M2.5 3h2.4L7.6 15h9.8l2.1-8H6.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="icon-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <rect x="3" y="5" width="18" height="14" rx="2.5"/>
+      <path d="m4 7 8 6 8-6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M6.6 10.8a13 13 0 0 0 6.6 6.6l2.2-2.2a1.3 1.3 0 0 1 1.3-.3 9 9 0 0 0 2.9.46A1.3 1.3 0 0 1 20.9 16.6v2.9A1.3 1.3 0 0 1 19.6 20.8 17.4 17.4 0 0 1 3.2 4.4 1.3 1.3 0 0 1 4.5 3.1h2.9a1.3 1.3 0 0 1 1.3 1.3 9 9 0 0 0 .46 2.9 1.3 1.3 0 0 1-.3 1.3z" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="icon-linkedin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <rect x="3" y="3" width="18" height="18" rx="3"/>
+      <path d="M7.5 10.5v6M7.5 7.5v.01M11.5 16.5v-3.7c0-1.5 1-2.3 2.3-2.3 1.2 0 2.2.8 2.2 2.3v3.7M11.5 10.5v6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="icon-facebook" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M15 4h-2.3A3.7 3.7 0 0 0 9 7.7V10H7v3h2v7h3v-7h2.3l.7-3h-3V8a1 1 0 0 1 1-1H15z" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="icon-whatsapp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M12 21a9 9 0 1 0-7.7-4.4L3 21l4.6-1.2A9 9 0 0 0 12 21Z" stroke-linejoin="round"/>
+      <path d="M8.5 8.6c.2-.7.5-.7.8-.7h.5c.2 0 .4 0 .6.5s.6 1.5.6 1.6 0 .3-.1.5-.2.3-.4.5-.3.4-.1.7c.2.4.9 1.4 1.9 2.2 1.3 1 1.7 1.1 2 1s.5-.4.7-.7.5-.2.7-.1l1.4.7c.2.1.4.2.4.5s-.1 1-.5 1.4-1.2.9-2.5.6a7.4 7.4 0 0 1-4.5-3 7.5 7.5 0 0 1-1.6-4.1 2.5 2.5 0 0 1 .5-1.6Z"/>
+    </symbol>
+
+    <symbol id="icon-gtm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M12 3 4 8v8l8 5 8-5V8l-8-5Z" stroke-linejoin="round"/>
+      <path d="M12 3v18M4 8l8 5 8-5" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="icon-woo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <rect x="3" y="6" width="18" height="12" rx="3"/>
+      <path d="M6.5 10.5 8 15l2-3 2 3 1.5-4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="m5 12 4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="icon-elementor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <rect x="3" y="3" width="18" height="18" rx="3"/>
+      <rect x="7" y="7" width="3" height="10"/>
+      <path d="M13 7h4M13 11h4M13 15h4" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="icon-merchant" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M4 9h16l-1.5 10a2 2 0 0 1-2 1.7H7.5a2 2 0 0 1-2-1.7L4 9Z" stroke-linejoin="round"/>
+      <path d="M8 9V6a4 4 0 0 1 8 0v3" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="icon-canva" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M8 13.5c.6 1.4 1.8 2.2 3.3 2.2 2 0 3.4-1.4 3.7-3.2M9.5 9.8h5" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="icon-looker" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M4 20V13M9 20V7M14 20v-9M19 20V4" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="icon-chatgpt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M12 3c1.9 0 3.6 1.1 4.4 2.7A4.8 4.8 0 0 1 20 10.5c0 1-.3 1.9-.9 2.7.2.6.3 1.3.3 2 0 2.9-2.3 5.3-5.2 5.3-1 0-1.9-.3-2.7-.8-.8.5-1.7.8-2.7.8-2.9 0-5.2-2.4-5.2-5.3 0-.7.1-1.4.3-2-.6-.8-.9-1.7-.9-2.7 0-2.4 1.6-4.5 3.8-5.1A5 5 0 0 1 12 3Z" stroke-linejoin="round"/>
+    </symbol>
+
+  </svg>
+
+  <!-- =========================================================
+       NAVBAR
+       ========================================================= -->
+  <header class="navbar" id="navbar">
+    <div class="container">
+      <a href="#home" class="logo">
+        <span class="logo-mark">MD</span>
+        <span>
+          Mowla Digital
+          <span class="logo-tagline">Data Driven. Result Focused.</span>
+        </span>
+      </a>
+
+      <nav class="nav-menu" id="navMenu">
+        <ul class="nav-links">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#resume">Resume</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="YOUR_RESUME_LINK_HERE" class="btn btn-primary" target="_blank" rel="noopener" download>Download Resume</a>
+        </div>
+      </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       HERO
+       ========================================================= -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-left" data-reveal="left">
+        <p class="eyebrow">Hi, I'm</p>
+        <h1 class="hero-title">Md. Golam <span class="accent">Mowla</span></h1>
+        <p class="hero-subheading">Digital Marketing & E-commerce Specialist</p>
+        <p class="hero-desc">
+          I help businesses grow through Meta Ads, Google Ads, GA4, GTM,
+          WordPress, SEO and Conversion Tracking — turning ad spend into
+          measurable, trackable revenue.
+        </p>
+        <div class="hero-buttons">
+          <a href="#portfolio" class="btn btn-primary">
+            View Portfolio
+            <svg width="18" height="18" class="icon"><use href="#icon-arrow-right"></use></svg>
+          </a>
+          <a href="YOUR_RESUME_LINK_HERE" class="btn btn-outline" target="_blank" rel="noopener" download>Download Resume</a>
+        </div>
+        <div class="hero-quickstats">
+          <div>
+            <p class="stat-num"><span class="counter" data-count="3">0</span>+</p>
+            <p class="stat-label">Years Experience</p>
+          </div>
+          <div>
+            <p class="stat-num"><span class="counter" data-count="60">0</span>+</p>
+            <p class="stat-label">Campaigns Managed</p>
+          </div>
+          <div>
+            <p class="stat-num">$<span class="counter" data-count="250">0</span>K+</p>
+            <p class="stat-label">Ad Spend Optimized</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right" data-reveal="right">
+        <div class="hero-blob" aria-hidden="true"></div>
+        <div class="hero-image-wrap">
+          <img src="hero-image.jpg" alt="Md. Golam Mowla, Digital Marketing & E-commerce Specialist" width="650" height="750">
+        </div>
+        <div class="hero-floating-card card-top">
+          <span class="icon-badge"><svg width="20" height="20" class="icon"><use href="#icon-ga4"></use></svg></span>
+          <div>
+            <strong>ROAS Growth</strong>
+            <span>+180% Avg.</span>
+          </div>
+        </div>
+        <div class="hero-floating-card card-bottom">
+          <span class="icon-badge"><svg width="20" height="20" class="icon"><use href="#icon-check"></use></svg></span>
+          <div>
+            <strong>Verified Tracking</strong>
+            <span>Pixel + CAPI Synced</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-cue" aria-hidden="true">
+      <span>Scroll</span>
+      <span class="line"></span>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       TRUST BAR
+       ========================================================= -->
+  <section class="trust-bar">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-card" data-reveal>
+          <span class="trust-num"><span class="counter" data-count="3">0</span>+</span>
+          <span class="trust-label">Years Experience</span>
+        </div>
+        <div class="trust-card" data-reveal>
+          <span class="trust-num">Meta</span>
+          <span class="trust-label">Ads Specialist</span>
+        </div>
+        <div class="trust-card" data-reveal>
+          <span class="trust-num">Google</span>
+          <span class="trust-label">Ads Certified</span>
+        </div>
+        <div class="trust-card" data-reveal>
+          <span class="trust-num">WordPress</span>
+          <span class="trust-label">Development</span>
+        </div>
+        <div class="trust-card" data-reveal>
+          <span class="trust-num">GA4 & SEO</span>
+          <span class="trust-label">Tracking & Growth</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       ABOUT
+       ========================================================= -->
+  <section class="section section-light" id="about">
+    <div class="container about-grid">
+      <div class="about-image-wrap" data-reveal="left">
+        <img src="about-image.jpg" alt="Md. Golam Mowla working at his desk" width="550" height="650">
+        <div class="about-exp-badge">
+          <p class="num"><span class="counter" data-count="3">0</span><span>+</span></p>
+          <p class="lbl">Years of<br>Experience</p>
+        </div>
+      </div>
+
+      <div data-reveal="right">
+        <p class="eyebrow">About Me</p>
+        <h2 class="section-heading">Building measurable growth,<br>one campaign at a time</h2>
+        <div class="about-desc">
+          <p>
+            I'm a performance-driven Digital Marketing & E-commerce Specialist
+            operating under the Mowla Digital brand, working with businesses in
+            Bangladesh and internationally. My focus is simple: every taka and
+            dollar spent on ads should be traceable back to a result.
+          </p>
+          <p>
+            I plan and run Meta Ads, Google Ads and TikTok Ads campaigns, build
+            the GA4, GTM, Meta Pixel and Conversion API infrastructure behind
+            them, and develop the WordPress sites and landing pages that turn
+            that traffic into customers. Clean data and clear reporting sit at
+            the center of everything I deliver.
+          </p>
+        </div>
+
+        <div class="skills-list">
+          <div class="skill-bar">
+            <div class="skill-bar-top"><span>Meta Ads</span><span class="pct">95%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-width="95"></div></div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-top"><span>Google Ads</span><span class="pct">90%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-width="90"></div></div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-top"><span>WordPress</span><span class="pct">88%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-width="88"></div></div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-top"><span>SEO</span><span class="pct">85%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-width="85"></div></div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-top"><span>GA4</span><span class="pct">92%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-width="92"></div></div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-top"><span>GTM</span><span class="pct">90%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-width="90"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SERVICES
+       ========================================================= -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-head-center">
+        <p class="eyebrow">What I Do</p>
+        <h2 class="section-heading">Services built around<br>trackable results</h2>
+        <p class="section-sub">Every service below is backed by clean data — so you always know exactly what's working.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card" data-reveal>
+          <div class="service-icon"><svg width="30" height="30" class="icon"><use href="#icon-meta"></use></svg></div>
+          <h3>Meta Ads</h3>
+          <p>Facebook & Instagram campaign strategy, creative testing and CAPI-backed conversion tracking.</p>
+          <a href="#portfolio" class="service-link">Learn more <svg width="16" height="16" class="icon"><use href="#icon-arrow-right"></use></svg></a>
+        </div>
+        <div class="service-card" data-reveal>
+          <div class="service-icon"><svg width="30" height="30" class="icon"><use href="#icon-google"></use></svg></div>
+          <h3>Google Ads</h3>
+          <p>Search, Shopping and Performance Max campaigns built around real conversion value data.</p>
+          <a href="#portfolio" class="service-link">Learn more <svg width="16" height="16" class="icon"><use href="#icon-arrow-right"></use></svg></a>
+        </div>
+        <div class="service-card" data-reveal>
+          <div class="service-icon"><svg width="30" height="30" class="icon"><use href="#icon-wordpress"></use></svg></div>
+          <h3>WordPress Development</h3>
+          <p>Fast, conversion-ready WordPress and WooCommerce sites designed for ad traffic.</p>
+          <a href="#portfolio" class="service-link">Learn more <svg width="16" height="16" class="icon"><use href="#icon-arrow-right"></use></svg></a>
+        </div>
+        <div class="service-card" data-reveal>
+          <div class="service-icon"><svg width="30" height="30" class="icon"><use href="#icon-seo"></use></svg></div>
+          <h3>SEO</h3>
+          <p>Technical audits, on-page optimization and content structure to grow organic visibility.</p>
+          <a href="#portfolio" class="service-link">Learn more <svg width="16" height="16" class="icon"><use href="#icon-arrow-right"></use></svg></a>
+        </div>
+        <div class="service-card" data-reveal>
+          <div class="service-icon"><svg width="30" height="30" class="icon"><use href="#icon-gtm"></use></svg></div>
+          <h3>GA4 & GTM</h3>
+          <p>Full analytics and tag setup — GA4, Google Tag Manager, Meta Pixel and server-side CAPI.</p>
+          <a href="#portfolio" class="service-link">Learn more <svg width="16" height="16" class="icon"><use href="#icon-arrow-right"></use></svg></a>
+        </div>
+        <div class="service-card" data-reveal>
+          <div class="service-icon"><svg width="30" height="30" class="icon"><use href="#icon-cart"></use></svg></div>
+          <h3>E-commerce Marketing</h3>
+          <p>End-to-end funnels for online stores — from product feed to checkout tracking.</p>
+          <a href="#portfolio" class="service-link">Learn more <svg width="16" height="16" class="icon"><use href="#icon-arrow-right"></use></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       PORTFOLIO
+       ========================================================= -->
+  <section class="section section-light" id="portfolio">
+    <div class="container">
+      <div class="section-head-center">
+        <p class="eyebrow">Portfolio</p>
+        <h2 class="section-heading">Selected work &<br>recent campaigns</h2>
+        <p class="section-sub">A snapshot of campaigns, builds and audits delivered under Mowla Digital.</p>
+      </div>
+
+      <div class="portfolio-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="meta">Meta Ads</button>
+        <button class="filter-btn" data-filter="google">Google Ads</button>
+        <button class="filter-btn" data-filter="wordpress">WordPress</button>
+        <button class="filter-btn" data-filter="tracking">Tracking</button>
+      </div>
+
+      <div class="portfolio-grid">
+        <div class="portfolio-card" data-reveal data-category="meta">
+          <div class="portfolio-thumb"><img src="portfolio-1.jpg" alt="Meta Ads campaign case study" width="370" height="250"></div>
+          <div class="portfolio-info">
+            <span class="portfolio-category">Meta Ads Campaign</span>
+            <h3>E-commerce Retargeting Funnel</h3>
+            <a href="#" class="view-project-btn">View Project <svg width="16" height="16" class="icon"><use href="#icon-arrow-right"></use></svg></a>
+          </div>
+        </div>
+        <div class="portfolio-card" data-reveal data-category="google">
+          <div class="portfolio-thumb"><img src="portfolio-2.jpg" alt="Google Ads campaign case study" width="370" height="250"></div>
+          <div class="portfolio-info">
+            <span class="portfolio-category">Google Ads Campaign</span>
+            <h3>Shopping & Search Scale-Up</h3>
+            <a href="#" class="view-project-btn">View Project <svg width="16" height="16" class="icon"><use href="#icon-arrow-right"></use></svg></a>
+          </div>
+        </div>
+        <div class="portfolio-card" data-reveal data-category="wordpress">
+          <div class="portfolio-thumb"><img src="portfolio-3.jpg" alt="WordPress website build" width="370" height="250"></div>
+          <div class="portfolio-info">
+            <span class="portfolio-category">WordPress Website</span>
+            <h3>WooCommerce Storefront Build</h3>
+            <a href="#" class="view-project-btn">View Project <svg width="16" height="16" class="icon"><use href="#icon-arrow-right"></use></svg></a>
+          </div>
+        </div>
+        <div class="portfolio-card" data-reveal data-category="wordpress">
+          <div class="portfolio-thumb"><img src="portfolio-4.jpg" alt="High-converting landing page" width="370" height="250"></div>
+          <div class="portfolio-info">
+            <span class="portfolio-category">Landing Page</span>
+            <h3>High-Conversion Product Page</h3>
+            <a href="#" class="view-project-btn">View Project <svg width="16" height="16" class="icon"><use href="#icon-arrow-right"></use></svg></a>
+          </div>
+        </div>
+        <div class="portfolio-card" data-reveal data-category="tracking">
+          <div class="portfolio-thumb"><img src="portfolio-5.jpg" alt="SEO audit report" width="370" height="250"></div>
+          <div class="portfolio-info">
+            <span class="portfolio-category">SEO Audit</span>
+            <h3>Technical & On-Page SEO Audit</h3>
+            <a href="#" class="view-project-btn">View Project <svg width="16" height="16" class="icon"><use href="#icon-arrow-right"></use></svg></a>
+          </div>
+        </div>
+        <div class="portfolio-card" data-reveal data-category="tracking">
+          <div class="portfolio-thumb"><img src="portfolio-6.jpg" alt="GA4 dashboard reporting" width="370" height="250"></div>
+          <div class="portfolio-info">
+            <span class="portfolio-category">GA4 Dashboard</span>
+            <h3>Custom Reporting Dashboard</h3>
+            <a href="#" class="view-project-btn">View Project <svg width="16" height="16" class="icon"><use href="#icon-arrow-right"></use></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       EXPERIENCE TIMELINE + RESUME ANCHOR
+       ========================================================= -->
+  <section class="section" id="resume">
+    <div class="container">
+      <div class="section-head-center">
+        <p class="eyebrow">Experience</p>
+        <h2 class="section-heading">A track record built<br>on real campaigns</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item" data-reveal>
+          <span class="timeline-dot"></span>
+          <p class="timeline-date">2023 — Present</p>
+          <h3>Digital Marketing Specialist</h3>
+          <p class="timeline-role">Freelance — Mowla Digital</p>
+          <p>Running Meta Ads, Google Ads and TikTok Ads for clients across Bangladesh and abroad, alongside GA4, GTM, Pixel and CAPI setup for accurate, privacy-resilient conversion tracking.</p>
+        </div>
+        <div class="timeline-item" data-reveal>
+          <span class="timeline-dot"></span>
+          <p class="timeline-date">2022 — 2023</p>
+          <h3>WordPress & E-commerce Development</h3>
+          <p class="timeline-role">Freelance Projects</p>
+          <p>Built and optimized WordPress and WooCommerce sites, focusing on speed, structure and conversion-friendly design for ad-driven traffic.</p>
+        </div>
+        <div class="timeline-item" data-reveal>
+          <span class="timeline-dot"></span>
+          <p class="timeline-date">2021 — 2022</p>
+          <h3>Foundations in Performance Marketing</h3>
+          <p class="timeline-role">Self-Directed Learning & Early Projects</p>
+          <p>Built core skills in Meta and Google Ads, analytics and tracking, laying the groundwork for the Mowla Digital brand.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       CERTIFICATIONS
+       ========================================================= -->
+  <section class="section section-light">
+    <div class="container">
+      <div class="section-head-center">
+        <p class="eyebrow">Certifications</p>
+        <h2 class="section-heading">Trained and certified<br>on the platforms I use</h2>
+      </div>
+
+      <div class="cert-grid">
+        <div class="cert-logo" data-reveal><img src="google-logo.png" alt="Google certification" width="150" height="90"></div>
+        <div class="cert-logo" data-reveal><img src="meta-logo.png" alt="Meta certification" width="150" height="90"></div>
+        <div class="cert-logo" data-reveal><img src="hubspot-logo.png" alt="HubSpot certification" width="150" height="90"></div>
+        <div class="cert-logo" data-reveal><img src="skillshop-logo.png" alt="Skillshop certification" width="150" height="90"></div>
+        <div class="cert-logo" data-reveal><img src="coursera-logo.png" alt="Coursera certification" width="150" height="90"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       TOOLS
+       ========================================================= -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head-center">
+        <p class="eyebrow">Tools</p>
+        <h2 class="section-heading">The stack behind<br>every campaign</h2>
+      </div>
+
+      <div class="tools-grid">
+        <div class="tool-card" data-reveal>
+          <div class="tool-icon"><svg width="34" height="34" class="icon"><use href="#icon-google"></use></svg></div>
+          <span>Google Ads</span>
+        </div>
+        <div class="tool-card" data-reveal>
+          <div class="tool-icon"><svg width="34" height="34" class="icon"><use href="#icon-ga4"></use></svg></div>
+          <span>GA4</span>
+        </div>
+        <div class="tool-card" data-reveal>
+          <div class="tool-icon"><svg width="34" height="34" class="icon"><use href="#icon-gtm"></use></svg></div>
+          <span>Tag Manager</span>
+        </div>
+        <div class="tool-card" data-reveal>
+          <div class="tool-icon"><svg width="34" height="34" class="icon"><use href="#icon-canva"></use></svg></div>
+          <span>Canva</span>
+        </div>
+        <div class="tool-card" data-reveal>
+          <div class="tool-icon"><svg width="34" height="34" class="icon"><use href="#icon-wordpress"></use></svg></div>
+          <span>WordPress</span>
+        </div>
+        <div class="tool-card" data-reveal>
+          <div class="tool-icon"><svg width="34" height="34" class="icon"><use href="#icon-elementor"></use></svg></div>
+          <span>Elementor</span>
+        </div>
+        <div class="tool-card" data-reveal>
+          <div class="tool-icon"><svg width="34" height="34" class="icon"><use href="#icon-woo"></use></svg></div>
+          <span>WooCommerce</span>
+        </div>
+        <div class="tool-card" data-reveal>
+          <div class="tool-icon"><svg width="34" height="34" class="icon"><use href="#icon-merchant"></use></svg></div>
+          <span>Merchant Center</span>
+        </div>
+        <div class="tool-card" data-reveal>
+          <div class="tool-icon"><svg width="34" height="34" class="icon"><use href="#icon-looker"></use></svg></div>
+          <span>Looker Studio</span>
+        </div>
+        <div class="tool-card" data-reveal>
+          <div class="tool-icon"><svg width="34" height="34" class="icon"><use href="#icon-chatgpt"></use></svg></div>
+          <span>ChatGPT</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       CTA
+       ========================================================= -->
+  <section class="cta-section">
+    <div class="container cta-inner" data-reveal>
+      <h2>Let's Grow Your Business Together</h2>
+      <div class="cta-buttons">
+        <a href="#contact" class="btn btn-light">Contact Me</a>
+        <a href="YOUR_RESUME_LINK_HERE" class="btn btn-ghost-light" target="_blank" rel="noopener" download>Download Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       CONTACT
+       ========================================================= -->
+  <section class="section" id="contact">
+    <div class="container contact-grid">
+      <div data-reveal="left">
+        <p class="eyebrow">Contact</p>
+        <h2 class="section-heading">Let's talk about<br>your next campaign</h2>
+        <p class="section-sub">Reach out directly, or send a message and I'll reply within one business day.</p>
+
+        <div class="contact-info-item">
+          <span class="icon-badge"><svg width="22" height="22" class="icon"><use href="#icon-mail"></use></svg></span>
+          <div>
+            <h4>Email</h4>
+            <a href="mailto:contact.golammowla@gmail.com">contact.golammowla@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <span class="icon-badge"><svg width="22" height="22" class="icon"><use href="#icon-linkedin"></use></svg></span>
+          <div>
+            <h4>LinkedIn</h4>
+            <a href="https://www.linkedin.com/in/golammowla" target="_blank" rel="noopener">linkedin.com/in/golammowla</a>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <span class="icon-badge"><svg width="22" height="22" class="icon"><use href="#icon-phone"></use></svg></span>
+          <div>
+            <h4>Phone</h4>
+            <a href="tel:+8801712244493">+880 1712-244493</a>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <span class="icon-badge"><svg width="22" height="22" class="icon"><use href="#icon-facebook"></use></svg></span>
+          <div>
+            <h4>Facebook</h4>
+            <a href="https://www.facebook.com/profile.golammowla" target="_blank" rel="noopener">facebook.com/profile.golammowla</a>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal="right">
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fullName">Full Name</label>
+              <input type="text" id="fullName" name="fullName" placeholder="Your name">
+              <span class="field-error" id="err-fullName"></span>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="you@company.com">
+              <span class="field-error" id="err-email"></span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="+8801XXXXXXXXX">
+              <span class="field-error" id="err-phone"></span>
+            </div>
+            <div class="form-group">
+              <label for="company">Company Name</label>
+              <input type="text" id="company" name="company" placeholder="Optional">
+              <span class="field-error" id="err-company"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="What's this about?">
+            <span class="field-error" id="err-subject"></span>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell me about your project or goals..."></textarea>
+            <span class="field-error" id="err-message"></span>
+          </div>
+          <button type="submit" class="btn btn-primary" id="submitBtn" style="width:100%;">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SUCCESS POPUP (Fade + Scale, auto-closes in 4s)
+       ========================================================= -->
+  <div class="popup-overlay" id="successPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+    <div class="popup-box">
+      <div class="popup-icon">
+        <svg width="30" height="30" class="icon"><use href="#icon-check"></use></svg>
+      </div>
+      <h3 id="popupTitle">Thank You!</h3>
+      <p>Thank you for contacting me. I have received your message successfully and will get back to you as soon as possible.</p>
+      <button type="button" class="popup-close-btn" id="popupCloseBtn">Close</button>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer class="footer">
+    <div class="container">
+      <a href="#home" class="logo">
+        <span class="logo-mark">MD</span>
+        <span>Mowla Digital</span>
+      </a>
+      <p class="footer-copy">&copy; <span id="footerYear"></span> Mowla Digital. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/in/golammowla" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" class="icon"><use href="#icon-linkedin"></use></svg></a>
+        <a href="https://www.facebook.com/profile.golammowla" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" class="icon"><use href="#icon-facebook"></use></svg></a>
+        <a href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="18" height="18" class="icon"><use href="#icon-whatsapp"></use></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Client script: nav, animations, counters, form + Sheets integration -->
+  <script>
+/* =============================================================
+   MOWLA DIGITAL — PORTFOLIO CLIENT SCRIPT (BLOGGER VERSION)
+   Same navbar / reveal / counter / skill-bar / filter behaviour
+   as the original build. The contact form module is new:
+   validation, loading spinner, Google Sheets fetch() integration,
+   and the Thank You popup.
+   ============================================================= */
+
+// -----------------------------------------------------------------
+// !! PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL BELOW !!
+// Deploy the companion Apps Script (see AppsScript-Backend.gs) as
+// a Web App ("Anyone" access), copy the deployment URL, and paste
+// it here. Do not hardcode a spreadsheet ID anywhere on this page —
+// the ID only lives inside the Apps Script project itself.
+// -----------------------------------------------------------------
+const SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL";
+
+document.addEventListener('DOMContentLoaded', function () {
+  initNavbar();
+  initMobileMenu();
+  initScrollReveal();
+  initCounters();
+  initSkillBars();
+  initPortfolioFilter();
+  initContactForm();
+  initFooterYear();
+});
+
+/* ---------- Sticky navbar shadow on scroll + active link ---------- */
+function initNavbar() {
+  var navbar = document.getElementById('navbar');
+  if (!navbar) return;
+
+  function onScroll() {
+    if (window.scrollY > 12) {
+      navbar.classList.add('is-scrolled');
+    } else {
+      navbar.classList.remove('is-scrolled');
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var links = document.querySelectorAll('.nav-links a');
+  var sections = Array.prototype.map.call(links, function (link) {
+    var id = link.getAttribute('href').replace('#', '');
+    return document.getElementById(id);
+  });
+
+  function onSectionScroll() {
+    var scrollPos = window.scrollY + 120;
+    sections.forEach(function (section, i) {
+      if (!section) return;
+      var top = section.offsetTop;
+      var bottom = top + section.offsetHeight;
+      if (scrollPos >= top && scrollPos < bottom) {
+        links.forEach(function (l) { l.classList.remove('active'); });
+        links[i].classList.add('active');
+      }
+    });
+  }
+  window.addEventListener('scroll', onSectionScroll, { passive: true });
+}
+
+/* ---------- Mobile / tablet hamburger menu ---------- */
+function initMobileMenu() {
+  var toggle = document.getElementById('navToggle');
+  var menu = document.getElementById('navMenu');
+  if (!toggle || !menu) return;
+
+  toggle.addEventListener('click', function () {
+    var isOpen = menu.classList.toggle('open');
+    toggle.classList.toggle('open', isOpen);
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  menu.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      menu.classList.remove('open');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
+/* ---------- Fade / slide reveal on scroll ---------- */
+function initScrollReveal() {
+  var items = document.querySelectorAll('[data-reveal]');
+  if (!items.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    items.forEach(function (el) { el.classList.add('is-visible'); });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+  items.forEach(function (el) { observer.observe(el); });
+}
+
+/* ---------- Animated number counters ---------- */
+function initCounters() {
+  var counters = document.querySelectorAll('.counter');
+  if (!counters.length) return;
+
+  function animateCounter(el) {
+    var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+    var duration = 1400;
+    var startTime = null;
+
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      var progress = Math.min((timestamp - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(eased * target);
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = target;
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  if (!('IntersectionObserver' in window)) {
+    counters.forEach(animateCounter);
+    return;
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(function (el) { observer.observe(el); });
+}
+
+/* ---------- Skill progress bars ---------- */
+function initSkillBars() {
+  var bars = document.querySelectorAll('.skill-fill');
+  if (!bars.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    bars.forEach(function (el) { el.style.width = el.getAttribute('data-width') + '%'; });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        var el = entry.target;
+        el.style.width = el.getAttribute('data-width') + '%';
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  bars.forEach(function (el) { observer.observe(el); });
+}
+
+/* ---------- Portfolio filter ---------- */
+function initPortfolioFilter() {
+  var buttons = document.querySelectorAll('.filter-btn');
+  var cards = document.querySelectorAll('.portfolio-card');
+  if (!buttons.length || !cards.length) return;
+
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      buttons.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+
+      var filter = btn.getAttribute('data-filter');
+      cards.forEach(function (card) {
+        var match = filter === 'all' || card.getAttribute('data-category') === filter;
+        card.style.display = match ? '' : 'none';
+      });
+    });
+  });
+}
+
+/* ---------- Footer year ---------- */
+function initFooterYear() {
+  var el = document.getElementById('footerYear');
+  if (el) el.textContent = new Date().getFullYear();
+}
+
+/* =================================================================
+   CONTACT FORM — validation, loading state, Google Sheets fetch(),
+   and the Thank You popup.
+   ================================================================= */
+function initContactForm() {
+  var form = document.getElementById('contactForm');
+  if (!form) return;
+
+  var submitBtn = document.getElementById('submitBtn');
+  var popup = document.getElementById('successPopup');
+  var popupCloseBtn = document.getElementById('popupCloseBtn');
+  var popupAutoCloseTimer = null;
+
+  var fields = {
+    fullName: { el: document.getElementById('fullName'), required: true, type: 'text', label: 'Full Name' },
+    email:    { el: document.getElementById('email'),    required: true, type: 'email', label: 'Email Address' },
+    phone:    { el: document.getElementById('phone'),    required: true, type: 'phone', label: 'Phone Number' },
+    company:  { el: document.getElementById('company'),  required: false, type: 'text', label: 'Company Name' },
+    subject:  { el: document.getElementById('subject'),  required: true, type: 'text', label: 'Subject' },
+    message:  { el: document.getElementById('message'),  required: true, type: 'text', label: 'Message' }
+  };
+
+  var EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var PHONE_REGEX = /^[+]?[0-9\s-]{7,15}$/;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!validateForm()) return;
+    submitForm();
+  });
+
+  // Clear a field's error state as soon as the user edits it
+  Object.keys(fields).forEach(function (key) {
+    var f = fields[key];
+    if (!f.el) return;
+    f.el.addEventListener('input', function () {
+      clearFieldError(key);
+    });
+  });
+
+  function validateForm() {
+    var isValid = true;
+
+    Object.keys(fields).forEach(function (key) {
+      var f = fields[key];
+      if (!f.el) return;
+      var value = f.el.value.trim();
+      clearFieldError(key);
+
+      if (f.required && !value) {
+        setFieldError(key, f.label + ' is required.');
+        isValid = false;
+        return;
+      }
+      if (value && f.type === 'email' && !EMAIL_REGEX.test(value)) {
+        setFieldError(key, 'Enter a valid email address.');
+        isValid = false;
+      }
+      if (value && f.type === 'phone' && !PHONE_REGEX.test(value)) {
+        setFieldError(key, 'Enter a valid phone number.');
+        isValid = false;
+      }
+    });
+
+    return isValid;
+  }
+
+  function setFieldError(key, msg) {
+    var f = fields[key];
+    if (f.el) f.el.classList.add('invalid');
+    var errEl = document.getElementById('err-' + key);
+    if (errEl) errEl.textContent = msg;
+  }
+
+  function clearFieldError(key) {
+    var f = fields[key];
+    if (f.el) f.el.classList.remove('invalid');
+    var errEl = document.getElementById('err-' + key);
+    if (errEl) errEl.textContent = '';
+  }
+
+  function detectDevice() {
+    var w = window.innerWidth;
+    if (w <= 767) return 'Mobile';
+    if (w <= 1024) return 'Tablet';
+    return 'Desktop';
+  }
+
+  function detectBrowser() {
+    var ua = navigator.userAgent;
+    if (ua.indexOf('Edg') > -1) return 'Edge';
+    if (ua.indexOf('Chrome') > -1) return 'Chrome';
+    if (ua.indexOf('Firefox') > -1) return 'Firefox';
+    if (ua.indexOf('Safari') > -1) return 'Safari';
+    return 'Other';
+  }
+
+  // Best-effort public IP lookup. Non-blocking: if it fails or is
+  // slow, the form still submits with IP left blank.
+  function getVisitorIP() {
+    return Promise.race([
+      fetch('https://api.ipify.org?format=json')
+        .then(function (r) { return r.json(); })
+        .then(function (data) { return data.ip || ''; })
+        .catch(function () { return ''; }),
+      new Promise(function (resolve) { setTimeout(function () { resolve(''); }, 1500); })
+    ]);
+  }
+
+  function submitForm() {
+    submitBtn.classList.add('btn-loading');
+    submitBtn.disabled = true;
+
+    var now = new Date();
+
+    getVisitorIP().then(function (ip) {
+      var payload = {
+        'Full Name': fields.fullName.el.value.trim(),
+        'Email': fields.email.el.value.trim(),
+        'Phone': fields.phone.el.value.trim(),
+        'Company': fields.company.el.value.trim(),
+        'Subject': fields.subject.el.value.trim(),
+        'Message': fields.message.el.value.trim(),
+        'Date': now.toLocaleDateString(),
+        'Time': now.toLocaleTimeString(),
+        'Browser': detectBrowser(),
+        'Device': detectDevice(),
+        'IP': ip,
+        'Status': 'New Lead'
+      };
+
+      // "text/plain" content-type avoids a CORS preflight request
+      // against the Apps Script Web App endpoint. The companion
+      // doPost() reads it back out with JSON.parse(e.postData.contents).
+      return fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      });
+    })
+    .then(function () {
+      onSubmitSuccess();
+    })
+    .catch(function () {
+      onSubmitError();
+    });
+  }
+
+  function onSubmitSuccess() {
+    submitBtn.classList.remove('btn-loading');
+    submitBtn.disabled = false;
+    form.reset();
+    showPopup();
+  }
+
+  function onSubmitError() {
+    submitBtn.classList.remove('btn-loading');
+    submitBtn.disabled = false;
+    setFieldError('subject', 'Could not send your message. Please check your connection and try again.');
+  }
+
+  function showPopup() {
+    if (!popup) return;
+    popup.classList.add('show');
+    popupAutoCloseTimer = setTimeout(hidePopup, 4000);
+  }
+
+  function hidePopup() {
+    if (!popup) return;
+    popup.classList.remove('show');
+    if (popupAutoCloseTimer) {
+      clearTimeout(popupAutoCloseTimer);
+      popupAutoCloseTimer = null;
+    }
+  }
+
+  if (popupCloseBtn) popupCloseBtn.addEventListener('click', hidePopup);
+  if (popup) {
+    popup.addEventListener('click', function (e) {
+      if (e.target === popup) hidePopup();
+    });
+  }
+}
+
+  </script>
+</body>
+</html>
