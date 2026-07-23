@@ -934,29 +934,72 @@
   .form-group textarea.invalid { border-color: #DC2626; background: #FEF2F2; }
 
   /* ---------- 19. Responsive ----------
-     Pixel-checked at: 1920 / 1440 / 1024 (tablet landscape) /
-     768 (tablet portrait) / 430 / 390 / 360.
-     No design values change here — only when each rule kicks in,
-     plus the additions needed to stop overflow on real devices. */
+     Sections 1–18 above are UNCHANGED — same tokens, layout,
+     colors, typography, buttons, cards, shadows, animations,
+     spinner and popup as before. This block was rewritten so:
+       1) the Hero stays two columns (text left, image right) on
+          tablet — 768px through 1024px — instead of stacking, and
+       2) mobile has zero horizontal overflow at every width down
+          to 320px.
+     Anything above 1024px is untouched by any rule below — the
+     .container itself caps real content at 1200px, so 1200,
+     1440 and 1920 all render identically to the base desktop
+     design regardless of monitor size. */
 
-  /* Everything above 1200px is already capped by .container's
-     max-width, so 1920 and 1440 render identically to the base
-     desktop design without extra rules. */
+  /* =========================================================
+     TABLET — Landscape (1024px) down through Portrait (768px)
+     Hero stays two columns: text LEFT, image RIGHT.
+     ========================================================= */
+  @media (max-width: 1024px) and (min-width: 768px) {
+    :root { --section-pad: 72px; }
 
-  /* ---- Tablet Landscape (≤1024px) ---- */
-  @media (max-width: 1024px) {
-    :root { --section-pad: 80px; }
-    .hero { min-height: auto; padding: 60px 0; }
-    .hero .container { grid-template-columns: 1fr; }
-    .hero-right { margin-top: 60px; justify-content: center; }
-    .hero-title { font-size: 54px; }
+    .hero { min-height: auto; padding: 70px 0; }
+    .hero .container {
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: clamp(20px, 3vw, 40px);
+    }
+    .hero-title { font-size: clamp(40px, 5vw, 54px); }
+    .hero-subheading { font-size: clamp(17px, 2vw, 20px); }
+    .hero-desc { font-size: 15.5px; max-width: 100%; }
+    .hero-buttons { gap: 14px; margin-bottom: 34px; }
+    .hero-quickstats { gap: clamp(16px, 3vw, 32px); flex-wrap: wrap; }
+
+    .hero-right { justify-content: flex-end; margin-top: 0; }
+    .hero-image-wrap {
+      width: 100%;
+      max-width: 420px;
+      height: auto;
+      aspect-ratio: 650 / 750;
+    }
+    .hero-blob {
+      width: min(60vw, 420px);
+      height: min(60vw, 420px);
+    }
+    .hero-floating-card { padding: 10px 14px; gap: 8px; }
+    .hero-floating-card.card-top { top: 10px; left: -10px; }
+    .hero-floating-card.card-bottom { bottom: 14px; right: -8px; }
+    .hero-floating-card strong { font-size: 12.5px; }
+    .hero-floating-card span { font-size: 11px; }
+
     .about-grid { grid-template-columns: 1fr; }
-    .about-image-wrap { width: 100%; max-width: 500px; margin: 0 auto; }
-    .services-grid, .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
-    .trust-grid, .cert-grid, .tools-grid { grid-template-columns: repeat(3, 1fr); }
-    .contact-grid { grid-template-columns: 1fr; }
+    .about-image-wrap {
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+      aspect-ratio: 550 / 650;
+      margin: 0 auto;
+    }
 
-    /* Hamburger menu turns on for tablet landscape and below */
+    .services-grid, .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+    .trust-grid { grid-template-columns: repeat(2, 1fr); }
+    .cert-grid, .tools-grid { grid-template-columns: repeat(3, 1fr); }
+    .contact-grid { grid-template-columns: 1fr; }
+    .cta-inner { flex-direction: column; text-align: center; }
+    .form-row { grid-template-columns: 1fr; }
+    .contact-form { padding: 32px 26px; }
+
+    /* Hamburger turns on across the whole tablet range so the
+       six nav links + button always fit without crowding */
     .nav-menu { position: fixed; top: 80px; left: 0; width: 100%; height: calc(100vh - 80px);
       background: #fff; flex-direction: column; justify-content: flex-start; padding: 40px 24px;
       transform: translateX(100%); transition: transform var(--transition); gap: 30px;
@@ -967,77 +1010,98 @@
     .nav-toggle { display: flex; }
   }
 
-  /* ---- Tablet Portrait (≤768px) ---- */
-  @media (max-width: 768px) {
-    :root { --section-pad: 64px; }
-    .hero-title { font-size: 46px; }
-    .hero-subheading { font-size: 19px; }
-    .hero-image-wrap { height: 560px; }
-    .hero-blob { width: 460px; height: 460px; }
-    .section-heading { font-size: 32px; }
-    .trust-grid { grid-template-columns: repeat(2, 1fr); }
-    .cert-grid, .tools-grid { grid-template-columns: repeat(3, 1fr); }
-    .cta-inner { flex-direction: column; text-align: center; }
-    .form-row { grid-template-columns: 1fr; }
-    .contact-form { padding: 32px 26px; }
-  }
+  /* =========================================================
+     MOBILE — everything below 768px: Mobile Large (430), Mobile
+     Medium (390), Samsung Note 9 (360–414), Small Mobile (320).
+     Hero switches to a single, centered column here — the two-
+     column rule above is scoped to tablet widths only.
+     ========================================================= */
+  @media (max-width: 767px) {
+    :root { --section-pad: clamp(40px, 10vw, 56px); }
 
-  /* ---- Mobile Large (≤430px) ---- */
-  @media (max-width: 430px) {
-    :root { --section-pad: 52px; }
-    .container { padding: 0 18px; }
-    .hero-title { font-size: 36px; }
-    .hero-subheading { font-size: 17px; }
-    .hero-desc { font-size: 15.5px; }
-    .section-heading { font-size: 26px; }
-    .section-sub { font-size: 14.5px; }
-    .hero-quickstats { gap: 20px; flex-wrap: wrap; }
-    .hero-quickstats .stat-num { font-size: 22px; }
-    .hero-image-wrap { height: 420px; border-radius: 18px; }
-    .hero-blob { width: 300px; height: 300px; }
-    .hero-floating-card { padding: 10px 12px; gap: 8px; }
-    .hero-floating-card.card-top { top: 16px; left: 4px; }
-    .hero-floating-card.card-bottom { bottom: 16px; right: 4px; }
-    .hero-floating-card strong { font-size: 12.5px; }
-    .hero-floating-card span { font-size: 11px; }
+    html, body { max-width: 100%; overflow-x: hidden; }
+    .container { width: 100%; padding: 0 clamp(16px, 4vw, 24px); }
+
+    .hero { min-height: auto; padding: 50px 0; overflow: hidden; }
+    .hero .container { grid-template-columns: 1fr; text-align: center; gap: 0; }
+    .hero-left { display: flex; flex-direction: column; align-items: center; }
+    .hero-title { font-size: clamp(28px, 8vw, 40px); }
+    .hero-subheading { font-size: clamp(16px, 4vw, 19px); }
+    .hero-desc { font-size: 15px; max-width: 90%; }
+    .hero-buttons { justify-content: center; gap: 12px; margin-bottom: 34px; }
+    .hero-quickstats { justify-content: center; gap: 18px; flex-wrap: wrap; }
+
+    .hero-right { margin-top: 40px; justify-content: center; }
+    .hero-image-wrap {
+      width: 100%;
+      max-width: min(90vw, 380px);
+      height: auto;
+      aspect-ratio: 650 / 750;
+      margin: 0 auto;
+    }
+    .hero-blob { width: min(70vw, 320px); height: min(70vw, 320px); }
+    .hero-floating-card { padding: 8px 10px; gap: 6px; }
+    .hero-floating-card.card-top { top: 8px; left: 2px; }
+    .hero-floating-card.card-bottom { bottom: 8px; right: 2px; }
+    .hero-floating-card strong { font-size: 11.5px; }
+    .hero-floating-card span { font-size: 10px; }
+
+    .section-heading { font-size: clamp(22px, 6vw, 28px); max-width: 100%; }
+    .section-sub { max-width: 100%; font-size: 14.5px; }
+
+    .about-image-wrap {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 550 / 650;
+    }
+    .about-exp-badge { left: 0; bottom: -18px; padding: 14px 16px; }
+    .about-exp-badge .num { font-size: 24px; }
+
     .services-grid, .portfolio-grid { grid-template-columns: 1fr; }
     .trust-grid { grid-template-columns: repeat(2, 1fr); }
     .trust-card { height: 100px; }
     .cert-grid, .tools-grid { grid-template-columns: repeat(2, 1fr); }
-    .about-exp-badge { left: 0; bottom: -18px; padding: 14px 16px; }
-    .about-exp-badge .num { font-size: 26px; }
-    .cta-inner h2 { font-size: 24px; }
-    .cta-buttons { width: 100%; }
+
+    .form-row { grid-template-columns: 1fr; }
+    .contact-form { padding: clamp(22px, 6vw, 32px) clamp(18px, 5vw, 26px); }
+
+    .cta-inner { flex-direction: column; text-align: center; gap: 24px; }
+    .cta-inner h2 { font-size: clamp(22px, 6vw, 28px); max-width: 100%; }
+    .cta-buttons { width: 100%; justify-content: center; }
     .cta-buttons .btn { width: 100%; }
-    .contact-form { padding: 26px 20px; }
+
     .timeline { padding-left: 30px; }
     .timeline-dot { left: -30px; }
+
     .popup-box { padding: 32px 24px; }
+
+    .footer .container { text-align: center; }
   }
 
-  /* ---- Mobile Medium (≤390px) ---- */
-  @media (max-width: 390px) {
-    .hero-title { font-size: 32px; }
-    .hero-image-wrap { height: 380px; }
-    .hero-blob { width: 260px; height: 260px; }
+  /* ---- Samsung Note 9 (360–414px) fine-tuning ---- */
+  @media (max-width: 414px) {
+    .hero-title { font-size: clamp(26px, 8vw, 34px); }
+    .hero-image-wrap { max-width: min(85vw, 320px); }
+    .hero-blob { width: min(65vw, 260px); height: min(65vw, 260px); }
     .hero-quickstats .stat-num { font-size: 20px; }
     .btn { padding: 14px 22px; font-size: 14px; }
-    .service-card { padding: 28px 22px; }
+    .service-card { padding: 26px 20px; }
   }
 
-  /* ---- Mobile Small (≤360px) ---- */
+  /* ---- Small Mobile (320px) ---- */
   @media (max-width: 360px) {
-    .hero-title { font-size: 29px; }
-    .hero-image-wrap { height: 340px; }
-    .hero-blob { width: 230px; height: 230px; }
+    .hero-title { font-size: 25px; }
+    .hero-image-wrap { max-width: 260px; }
+    .hero-blob { width: 220px; height: 220px; }
     .hero-floating-card { display: none; }
     .logo-tagline { display: none; }
     .section-heading { font-size: 23px; }
     .hero-quickstats { gap: 14px; }
   }
 
-  /* Universal overflow guard — belt and braces on top of the
-     breakpoints above so nothing can force a horizontal scrollbar. */
-  html, body { max-width: 100%; overflow-x: hidden; }
+  /* Universal overflow guard — belt and braces on top of every
+     rule above so nothing can force a horizontal scrollbar, and
+     every image/svg scales with its container. */
   img, svg, video { max-width: 100%; height: auto; }
   .hero-image-wrap img { height: 100%; }
